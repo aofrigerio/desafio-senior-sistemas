@@ -28,7 +28,8 @@ import lombok.Setter;
 @Table(schema = "sales", name = "order")
 public class OrderEntity extends DefaultEntityModel {
 	
-	private String name;
+	@Column(name= "customer")
+	private String customer;
 	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY)

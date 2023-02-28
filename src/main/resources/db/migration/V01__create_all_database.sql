@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS sales.product (
+   id UUID NOT NULL PRIMARY KEY,
+   created TIMESTAMP NOT NULL,
+   updated TIMESTAMP NOT NULL,   
+   name VARCHAR (50) NOT NULL,
+   type VARCHAR (10) NOT NULL,
+   price NUMERIC
+);

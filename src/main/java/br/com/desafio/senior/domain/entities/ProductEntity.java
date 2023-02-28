@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import br.com.desafio.senior.enuns.ProductTypeEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -24,13 +27,15 @@ import lombok.Setter;
 @Table(schema = "sales", name = "product")
 public class ProductEntity extends DefaultEntityModel {
 	
-	@Column(name = "name", length = 50)
+	@Column(name = "name", length = 50, nullable = false)
 	private String name;
 	
-	@Column(name= "type", length = 10)
+	@Enumerated(EnumType.STRING)
+	@Column(name= "type", length = 10, nullable = false)
 	private ProductTypeEnum type;
 	
-	@Column(name= "type", length = 10)
+	@Min(value = 0)
+	@Column(name= "price")
 	private Double price;
 
 }
