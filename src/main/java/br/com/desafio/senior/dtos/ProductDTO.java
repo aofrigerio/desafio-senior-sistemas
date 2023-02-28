@@ -1,4 +1,4 @@
-package br.com.desafio.senior;
+package br.com.desafio.senior.dtos;
 
 import br.com.desafio.senior.enuns.ProductTypeEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
