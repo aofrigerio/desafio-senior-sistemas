@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.desafio.senior.domain.entities.ItemOrderEntity;
+import br.com.desafio.senior.domain.entities.OrderEntity;
+import br.com.desafio.senior.domain.entities.ProductEntity;
 import br.com.desafio.senior.dtos.ItemOrderListDTO;
 import br.com.desafio.senior.dtos.ItemOrderRequestDTO;
 import br.com.desafio.senior.repositories.ItemOrderRepository;
@@ -38,8 +40,8 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 	@Override
 	public ItemOrderListDTO create(ItemOrderRequestDTO orderRequestDTO) {
 
-		var order = orderService.getOne(orderRequestDTO.orderId());
-		var product = productService.getOne(orderRequestDTO.productId());
+		OrderEntity order = orderService.getOne(orderRequestDTO.orderId());
+		ProductEntity product = productService.getOne(orderRequestDTO.productId());
 
 		var itemOrder = new ItemOrderEntity(order, product, orderRequestDTO.quantity(),
 				orderRequestDTO.quantity() * product.getPrice());
@@ -50,12 +52,10 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 		return new ItemOrderListDTO(itemOrder);
 	}
 
-	@Override
 	public ItemOrderEntity getOne(UUID uuId) {
 		return itemOrderRepository.findById(uuId).orElse(null);
 	}
 
-	@Override
 	public ItemOrderEntity update(UUID uuId, ItemOrderRequestDTO orderRequestDTO) {
 		var itemOrder = itemOrderRepository.findById(uuId).orElse(null);
 		itemOrder.setQuantity(orderRequestDTO.quantity());

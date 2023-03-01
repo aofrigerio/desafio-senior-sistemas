@@ -18,13 +18,17 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.desafio.senior.dtos.OrderListDTO;
 import br.com.desafio.senior.dtos.OrderRequestDTO;
 import br.com.desafio.senior.services.OrderService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 
+@Tag(name = "Pedido")
 @RestController
 @RequestMapping("/order")
+@AllArgsConstructor
 public class OrderResource {
 	
-	private OrderService orderService;
+	private final OrderService orderService;
 	
 	@GetMapping
 	private ResponseEntity<Page<OrderListDTO>> pageable(Pageable pageable){

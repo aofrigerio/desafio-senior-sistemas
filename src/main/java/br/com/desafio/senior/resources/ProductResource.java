@@ -17,42 +17,43 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.desafio.senior.dtos.ProductListDTO;
 import br.com.desafio.senior.dtos.ProductRequestDTO;
 import br.com.desafio.senior.services.ProductService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
+@Tag(name = "Produtos")
 @RestController
 @RequestMapping("/product")
 @AllArgsConstructor
 public class ProductResource {
-	
-	private ProductService productService;	
-	
+
+	private ProductService productService;
+
 	@GetMapping
-	private ResponseEntity<Page<ProductRequestDTO>> pageable(Pageable pageable){
+	private ResponseEntity<Page<ProductListDTO>> pageable(Pageable pageable) {
 		return ResponseEntity.ok(productService.listPageable(pageable));
 	}
 
-	
 	@GetMapping("/{uuId}")
-	private ResponseEntity<?> read(@PathVariable UUID uuId){
+	private ResponseEntity<?> read(@PathVariable UUID uuId) {
 		return ResponseEntity.ok(new ProductListDTO(productService.getOne(uuId)));
 	}
-	
+
 	@PostMapping
-	private ResponseEntity<Void> create(@Valid @RequestBody ProductRequestDTO productDTO){
+	private ResponseEntity<Void> create(@Valid @RequestBody ProductRequestDTO productDTO) {
 		productService.create(productDTO);
 		return ResponseEntity.noContent().build();
 	}
-	
+
 	@PutMapping
-	private ResponseEntity<ProductListDTO> update(@Valid @RequestBody ProductRequestDTO productDTO){
+	private ResponseEntity<ProductListDTO> update(@Valid @RequestBody ProductRequestDTO productDTO) {
 		return ResponseEntity.ok(productService.update(null, productDTO));
-	} 
-	
+	}
+
 	@DeleteMapping("/{uuId}")
-	private ResponseEntity<Void> delete(@PathVariable UUID uuId){
+	private ResponseEntity<Void> delete(@PathVariable UUID uuId) {
 		productService.delete(uuId);
 		return ResponseEntity.noContent().build();
-	} 
+	}
 
 }

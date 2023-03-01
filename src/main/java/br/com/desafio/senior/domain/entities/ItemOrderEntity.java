@@ -30,7 +30,7 @@ public class ItemOrderEntity extends DefaultEntityModel {
 	private OrderEntity order;
 	
 	@ManyToOne
-	@JoinColumn(name = "product_id", nullable = false)
+	@JoinColumn(name = "product_id", nullable = false, referencedColumnName = "id")
 	private ProductEntity product;
 	
 	@Column(name= "quantity")

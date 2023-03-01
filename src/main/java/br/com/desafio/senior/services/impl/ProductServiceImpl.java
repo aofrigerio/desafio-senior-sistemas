@@ -17,18 +17,18 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class ProductServiceImpl implements ProductService  {
-	
+public class ProductServiceImpl implements ProductService {
+
 	private ProductRepository productRepository;
-	
-	public ProductListDTO create(ProductRequestDTO productRequestDTO){
+
+	public ProductListDTO create(ProductRequestDTO productRequestDTO) {
 		var product = new ProductEntity(productRequestDTO);
 		productRepository.save(product);
 		return new ProductListDTO(product);
 	}
-	
-	public Page<ProductRequestDTO> listPageable(Pageable pageable){		
-		List<ProductRequestDTO> products = productRepository.findAll(pageable).map(ProductRequestDTO::new).toList();		
+
+	public Page<ProductListDTO> listPageable(Pageable pageable) {
+		List<ProductListDTO> products = productRepository.findAll(pageable).map(ProductListDTO::new).toList();
 		return new PageImpl<>(products, pageable, products.size());
 	}
 
@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService  {
 	}
 
 	public void delete(UUID uuId) {
-		productRepository.deleteById(uuId);		
+		productRepository.deleteById(uuId);
 	}
 
 }

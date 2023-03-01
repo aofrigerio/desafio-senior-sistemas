@@ -49,9 +49,9 @@ public class OrderServiceImpl implements OrderService {
 
 	public void update(OrderEntity orderEntity) {
 		Double total = Double.valueOf(0);
-		orderEntity.getItems().forEach( items -> {
-			total.sum(total, items.getTotal());
-		});
+//		orderEntity.getItems().forEach( items -> {
+//			total.sum(total, items.getTotal());
+//		});
 		repository.save(orderEntity);
 	}
 

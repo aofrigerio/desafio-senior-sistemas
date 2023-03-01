@@ -18,9 +18,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.desafio.senior.dtos.ItemOrderListDTO;
 import br.com.desafio.senior.dtos.ItemOrderRequestDTO;
 import br.com.desafio.senior.services.ItemOrderService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
+@Tag(name = "Itens do Pedido")
 @RestController
 @RequestMapping("/item-order")
 @AllArgsConstructor

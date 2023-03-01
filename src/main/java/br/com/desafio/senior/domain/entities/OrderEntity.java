@@ -12,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
@@ -36,9 +37,9 @@ public class OrderEntity extends DefaultEntityModel {
 	@Column(name = "customer", length = 50)
 	private String customer;
 
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY)
-	private List<ItemOrderEntity> items;
+//	@JsonIgnore
+//	@OneToMany(fetch = FetchType.LAZY)
+//	private List<ItemOrderEntity> items;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status", length = 10, nullable = false)
