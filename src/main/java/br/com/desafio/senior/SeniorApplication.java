@@ -1,4 +1,4 @@
-package br.com.desafio.senior.dtos;
+package br.com.desafio.senior;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

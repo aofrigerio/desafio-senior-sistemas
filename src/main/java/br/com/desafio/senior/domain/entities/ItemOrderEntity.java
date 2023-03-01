@@ -22,7 +22,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Table(schema = "sales", name = "product")
+@Table(schema = "sales", name = "item_order")
 public class ItemOrderEntity extends DefaultEntityModel {
 	
 	@ManyToOne
@@ -30,7 +30,7 @@ public class ItemOrderEntity extends DefaultEntityModel {
 	private OrderEntity order;
 	
 	@ManyToOne
-	@JoinColumn(name = "procut_id", nullable = false)
+	@JoinColumn(name = "product_id", nullable = false)
 	private ProductEntity product;
 	
 	@Column(name= "quantity")

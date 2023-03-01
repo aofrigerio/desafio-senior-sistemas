@@ -11,17 +11,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.desafio.senior.dtos.ProductDTO;
+import br.com.desafio.senior.dtos.ProductRequestDTO;
+import br.com.desafio.senior.services.ProductService;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/product")
+@AllArgsConstructor
 public class ProductResource {
 	
+	private ProductService productService;	
 	
 	@GetMapping
-	private ResponseEntity<Page<?>> pageable(Pageable pageable){
-		return ResponseEntity.noContent().build();
+	private ResponseEntity<Page<ProductRequestDTO>> pageable(Pageable pageable){
+		return ResponseEntity.ok(productService.listPageable(pageable));
 	}
 
 	
@@ -31,7 +35,8 @@ public class ProductResource {
 	}
 	
 	@PostMapping
-	private ResponseEntity<Void> create(@Valid @RequestBody ProductDTO productDTO){
+	private ResponseEntity<Void> create(@Valid @RequestBody ProductRequestDTO productDTO){
+		productService.create(productDTO);
 		return ResponseEntity.noContent().build();
 	}
 	

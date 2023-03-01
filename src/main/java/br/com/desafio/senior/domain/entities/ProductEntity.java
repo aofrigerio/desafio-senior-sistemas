@@ -2,6 +2,8 @@ package br.com.desafio.senior.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import br.com.desafio.senior.dtos.ProductListRequestDTO;
+import br.com.desafio.senior.dtos.ProductRequestDTO;
 import br.com.desafio.senior.enuns.ProductTypeEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,5 +39,18 @@ public class ProductEntity extends DefaultEntityModel {
 	@Min(value = 0)
 	@Column(name= "price")
 	private Double price;
+	
+	public ProductEntity(ProductRequestDTO productRequestDTO) {
+		this.name = productRequestDTO.name();
+		this.price = productRequestDTO.price();
+		this.type = productRequestDTO.type();
+	}
+	
+	public ProductEntity(ProductListRequestDTO productListRequestDTO) {
+		this.setId(productListRequestDTO.id());
+		this.name = productListRequestDTO.name();
+		this.price = productListRequestDTO.price();
+		this.type = productListRequestDTO.type();
+	}
 
 }

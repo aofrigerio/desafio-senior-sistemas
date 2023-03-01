@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.desafio.senior.OrderDTO;
+import br.com.desafio.senior.dtos.OrderRequestDTO;
 import jakarta.validation.Valid;
 
 @RestController
@@ -31,7 +31,7 @@ public class OrderResource {
 	}
 	
 	@PostMapping
-	private ResponseEntity<Void> create(@Valid @RequestBody OrderDTO products){
+	private ResponseEntity<Void> create(@Valid @RequestBody OrderRequestDTO products){
 		return ResponseEntity.noContent().build();
 	}
 	

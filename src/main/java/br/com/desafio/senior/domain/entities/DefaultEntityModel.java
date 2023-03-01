@@ -15,7 +15,7 @@ import jakarta.persistence.PreUpdate;
 public abstract class DefaultEntityModel {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
     private UUID id;
 
     @Column(name = "created", nullable = false)
