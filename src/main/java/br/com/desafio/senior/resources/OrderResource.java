@@ -34,19 +34,19 @@ public class OrderResource {
 	
 	@GetMapping("/{uuId}")
 	private ResponseEntity<OrderListDTO> read(@PathVariable UUID uuId){
-		return ResponseEntity.ok(orderService.getOne(uuId));
+		return ResponseEntity.ok(new OrderListDTO(orderService.getOne(uuId)));
 	}
 	
 	@PostMapping
 	private ResponseEntity<OrderListDTO> create(@Valid @RequestBody OrderRequestDTO order, UriComponentsBuilder uriBuilder){
 		var createdOrder = orderService.create(order);		
-		var uri = uriBuilder.path("/order/{id}").buildAndExpand(createdOrder.id()).toUri();
-		return ResponseEntity.created(uri).body(createdOrder);
+		var uri = uriBuilder.path("/order/{id}").buildAndExpand(createdOrder.getId()).toUri();		
+		return ResponseEntity.created(uri).body(new OrderListDTO(createdOrder));
 	}
 	
 	@PutMapping("/{uuId}")
-	private ResponseEntity<?> update(@PathVariable UUID uuId, @Valid @RequestBody OrderRequestDTO orders){
-		return ResponseEntity.ok(orderService.update(uuId, orders));
+	private ResponseEntity<OrderListDTO> update(@PathVariable UUID uuId, @Valid @RequestBody OrderRequestDTO orders){
+		return ResponseEntity.ok(new OrderListDTO(orderService.update(uuId, orders)));
 	} 
 	
 	@DeleteMapping("/{uuId}")

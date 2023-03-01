@@ -34,8 +34,8 @@ public class ProductResource {
 
 	
 	@GetMapping("/{uuId}")
-	private ResponseEntity<?> read(){
-		return ResponseEntity.noContent().build();
+	private ResponseEntity<?> read(@PathVariable UUID uuId){
+		return ResponseEntity.ok(new ProductListDTO(productService.getOne(uuId)));
 	}
 	
 	@PostMapping

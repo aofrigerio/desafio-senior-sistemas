@@ -35,5 +35,8 @@ public class ItemOrderEntity extends DefaultEntityModel {
 	
 	@Column(name= "quantity")
 	private int quantity;
+	
+	@Column(name= "total")
+	private Double total;
 
 }

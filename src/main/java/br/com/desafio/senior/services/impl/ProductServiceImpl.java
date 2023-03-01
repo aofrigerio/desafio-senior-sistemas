@@ -32,9 +32,9 @@ public class ProductServiceImpl implements ProductService  {
 		return new PageImpl<>(products, pageable, products.size());
 	}
 
-	public ProductListDTO getOne(UUID uuId) {
+	public ProductEntity getOne(UUID uuId) {
 		var product = productRepository.findById(uuId).orElse(null);
-		return new ProductListDTO(product);
+		return product;
 	}
 
 	public ProductListDTO update(UUID uuId, ProductRequestDTO productRequestDTO) {

@@ -13,46 +13,59 @@ import br.com.desafio.senior.dtos.ItemOrderListDTO;
 import br.com.desafio.senior.dtos.ItemOrderRequestDTO;
 import br.com.desafio.senior.repositories.ItemOrderRepository;
 import br.com.desafio.senior.services.ItemOrderService;
-import lombok.AllArgsConstructor;
+import br.com.desafio.senior.services.OrderService;
+import br.com.desafio.senior.services.ProductService;
 
 @Service
-@AllArgsConstructor
 public class ItemOrderServiceImpl implements ItemOrderService {
 
-	private ItemOrderRepository itemOrderRepository;
+	private final ItemOrderRepository itemOrderRepository;
+	private final OrderService orderService;
+	private final ProductService productService;
 
-	public List<ItemOrderEntity> getItems(List<UUID> uuIds) {		
-		//TODO -- Implementar QueryDsl
-		return null;
+	public ItemOrderServiceImpl(ItemOrderRepository itemOrderRepository, OrderService orderService,
+			ProductService productService) {
+		this.itemOrderRepository = itemOrderRepository;
+		this.orderService = orderService;
+		this.productService = productService;
 	}
 
 	public Page<ItemOrderListDTO> listPageable(Pageable pageable) {
-		List<ItemOrderListDTO> products = itemOrderRepository.findAll(pageable).map(ItemOrderListDTO::new).toList();		
-		return new PageImpl<>(products, pageable, products.size());
+		List<ItemOrderListDTO> itemOrder = itemOrderRepository.findAll(pageable).map(ItemOrderListDTO::new).toList();
+		return new PageImpl<>(itemOrder, pageable, itemOrder.size());
 	}
 
 	@Override
 	public ItemOrderListDTO create(ItemOrderRequestDTO orderRequestDTO) {
-		// TODO Auto-generated method stub
-		return null;
+
+		var order = orderService.getOne(orderRequestDTO.orderId());
+		var product = productService.getOne(orderRequestDTO.productId());
+
+		var itemOrder = new ItemOrderEntity(order, product, orderRequestDTO.quantity(),
+				orderRequestDTO.quantity() * product.getPrice());
+		itemOrderRepository.save(itemOrder);
+
+		orderService.update(order);
+
+		return new ItemOrderListDTO(itemOrder);
 	}
 
 	@Override
-	public ItemOrderListDTO getOne(UUID uuId) {
-		// TODO Auto-generated method stub
-		return null;
+	public ItemOrderEntity getOne(UUID uuId) {
+		return itemOrderRepository.findById(uuId).orElse(null);
 	}
 
 	@Override
-	public ItemOrderListDTO update(UUID uuId, ItemOrderRequestDTO orderRequestDTO) {
-		// TODO Auto-generated method stub
-		return null;
+	public ItemOrderEntity update(UUID uuId, ItemOrderRequestDTO orderRequestDTO) {
+		var itemOrder = itemOrderRepository.findById(uuId).orElse(null);
+		itemOrder.setQuantity(orderRequestDTO.quantity());
+		itemOrder.setTotal(orderRequestDTO.quantity() * itemOrder.getProduct().getPrice());
+		orderService.update(itemOrder.getOrder());
+		return itemOrderRepository.save(itemOrder);
 	}
 
-	@Override
 	public void delete(UUID uuId) {
-		// TODO Auto-generated method stub
-		
+		itemOrderRepository.deleteById(uuId);
 	}
 
 }

@@ -35,7 +35,7 @@ public class ItemOrderResource {
 	
 	@GetMapping("/{uuId}")
 	private ResponseEntity<ItemOrderListDTO> read(@PathVariable UUID uuId){
-		return ResponseEntity.ok(itemOrderService.getOne(uuId));
+		return ResponseEntity.ok(new ItemOrderListDTO(itemOrderService.getOne(uuId)));
 	}
 	
 	@PostMapping
