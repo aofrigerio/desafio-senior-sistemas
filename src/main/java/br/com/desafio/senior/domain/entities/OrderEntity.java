@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import br.com.desafio.senior.dtos.OrderRequestDTO;
 import br.com.desafio.senior.enuns.OrderStatusEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,11 +38,14 @@ public class OrderEntity extends DefaultEntityModel {
 
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY)
-	private List<ItemOrderEntity> item;
+	private List<ItemOrderEntity> items;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status", length = 10, nullable = false)
 	private OrderStatusEnum status;
+	
+	@Column(name = "off")
+	private Double off;
 
 	@Column(name = "total")
 	private Double total;
@@ -49,6 +53,10 @@ public class OrderEntity extends DefaultEntityModel {
 	@PrePersist
 	protected void onCreateOrder() {
 		status = OrderStatusEnum.OPEN;
+	}
+	
+	public OrderEntity(OrderRequestDTO orderRequestDTO) {
+		this.setCustomer(orderRequestDTO.customer());
 	}
 
 }

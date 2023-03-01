@@ -2,7 +2,7 @@ package br.com.desafio.senior.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import br.com.desafio.senior.dtos.ProductListRequestDTO;
+import br.com.desafio.senior.dtos.ProductListDTO;
 import br.com.desafio.senior.dtos.ProductRequestDTO;
 import br.com.desafio.senior.enuns.ProductTypeEnum;
 import jakarta.persistence.Column;
@@ -46,7 +46,7 @@ public class ProductEntity extends DefaultEntityModel {
 		this.type = productRequestDTO.type();
 	}
 	
-	public ProductEntity(ProductListRequestDTO productListRequestDTO) {
+	public ProductEntity(ProductListDTO productListRequestDTO) {
 		this.setId(productListRequestDTO.id());
 		this.name = productListRequestDTO.name();
 		this.price = productListRequestDTO.price();

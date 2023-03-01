@@ -5,14 +5,14 @@ import java.util.UUID;
 import br.com.desafio.senior.domain.entities.ProductEntity;
 import br.com.desafio.senior.enuns.ProductTypeEnum;
 
-public record ProductListRequestDTO(
+public record ProductListDTO(
 		UUID id,
 		String name,
 		ProductTypeEnum type,
 		Double price
 		) {
 	
-			public ProductListRequestDTO(ProductEntity productEntity) {
+			public ProductListDTO(ProductEntity productEntity) {
 				this(productEntity.getId(), productEntity.getName(), productEntity.getType(), productEntity.getPrice());
 			}
 }

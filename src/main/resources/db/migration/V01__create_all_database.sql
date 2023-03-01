@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS sales.order (
    updated TIMESTAMP NOT NULL,   
    customer VARCHAR (50) NOT NULL,
    status VARCHAR (10) NOT NULL,
+   off NUMERIC,
    total NUMERIC
 );
 

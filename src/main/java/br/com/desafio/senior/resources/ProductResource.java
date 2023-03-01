@@ -1,16 +1,20 @@
 package br.com.desafio.senior.resources;
 
+import java.util.UUID;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.desafio.senior.dtos.ProductListDTO;
 import br.com.desafio.senior.dtos.ProductRequestDTO;
 import br.com.desafio.senior.services.ProductService;
 import jakarta.validation.Valid;
@@ -41,12 +45,13 @@ public class ProductResource {
 	}
 	
 	@PutMapping
-	private ResponseEntity<?> update(){
-		return ResponseEntity.noContent().build();
+	private ResponseEntity<ProductListDTO> update(@Valid @RequestBody ProductRequestDTO productDTO){
+		return ResponseEntity.ok(productService.update(null, productDTO));
 	} 
 	
-	@DeleteMapping
-	private ResponseEntity<?> delete(){
+	@DeleteMapping("/{uuId}")
+	private ResponseEntity<Void> delete(@PathVariable UUID uuId){
+		productService.delete(uuId);
 		return ResponseEntity.noContent().build();
 	} 
 
