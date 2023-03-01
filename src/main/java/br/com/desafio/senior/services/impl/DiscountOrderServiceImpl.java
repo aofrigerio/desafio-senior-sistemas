@@ -10,6 +10,7 @@ import br.com.desafio.senior.dtos.DiscountDTO;
 import br.com.desafio.senior.enuns.OrderStatusEnum;
 import br.com.desafio.senior.enuns.ProductTypeEnum;
 import br.com.desafio.senior.resources.exceptions.OrderNotOpenException;
+import br.com.desafio.senior.services.DiscountOrderService;
 import br.com.desafio.senior.services.ItemOrderService;
 import br.com.desafio.senior.services.OrderService;
 import lombok.AllArgsConstructor;

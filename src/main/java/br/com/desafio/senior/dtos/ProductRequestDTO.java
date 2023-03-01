@@ -5,7 +5,9 @@ import br.com.desafio.senior.enuns.ProductTypeEnum;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
+@Builder
 public record ProductRequestDTO(
 		@NotEmpty
 		String name,

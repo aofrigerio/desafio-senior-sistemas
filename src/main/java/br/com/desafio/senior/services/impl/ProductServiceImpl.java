@@ -33,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public ProductEntity getOne(UUID uuId) {
-		var product = productRepository.findById(uuId).orElse(null);
+		var product = productRepository.findById(uuId).orElse(null); //TODO -- ajustar os optionals
 		return product;
 	}
 

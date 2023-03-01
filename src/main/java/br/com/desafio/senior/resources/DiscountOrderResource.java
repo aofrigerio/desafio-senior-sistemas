@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.desafio.senior.dtos.DiscountDTO;
-import br.com.desafio.senior.services.impl.DiscountOrderService;
+import br.com.desafio.senior.services.DiscountOrderService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 

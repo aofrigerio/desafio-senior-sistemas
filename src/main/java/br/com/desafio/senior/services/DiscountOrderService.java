@@ -1,4 +1,4 @@
-package br.com.desafio.senior.services.impl;
+package br.com.desafio.senior.services;
 
 import br.com.desafio.senior.dtos.DiscountDTO;
 
