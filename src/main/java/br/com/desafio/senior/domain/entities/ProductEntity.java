@@ -26,7 +26,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Table(schema = "sales", name = "product")
+@Table(schema = "sales", name = "products")
 public class ProductEntity extends DefaultEntityModel {
 	
 	@Column(name = "name", length = 50, nullable = false)

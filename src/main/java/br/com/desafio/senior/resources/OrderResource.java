@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.desafio.senior.dtos.DiscountDTO;
 import br.com.desafio.senior.dtos.OrderListDTO;
 import br.com.desafio.senior.dtos.OrderRequestDTO;
 import br.com.desafio.senior.services.OrderService;
@@ -54,9 +55,8 @@ public class OrderResource {
 	} 
 	
 	@DeleteMapping("/{uuId}")
-	private ResponseEntity<?> delete(@PathVariable UUID uuId){
+	private ResponseEntity<Void> delete(@PathVariable UUID uuId){
 		orderService.delete(uuId);
 		return ResponseEntity.noContent().build();
-	} 
-
+	}
 }

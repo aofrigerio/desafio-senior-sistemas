@@ -28,7 +28,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ItemOrderResource {
 	
-	private ItemOrderService itemOrderService;
+	private final ItemOrderService itemOrderService;
 	
 	@GetMapping
 	private ResponseEntity<Page<ItemOrderListDTO>> pageable(Pageable pageable){

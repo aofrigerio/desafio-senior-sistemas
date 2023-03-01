@@ -68,4 +68,10 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 		itemOrderRepository.deleteById(uuId);
 	}
 
+	public List<ItemOrderEntity> listByOrder(UUID uuIdOrder) {
+//		return itemOrderRepository.findAllByOrderId();
+		//QueryDSL TODO
+		return null;
+	}
+
 }

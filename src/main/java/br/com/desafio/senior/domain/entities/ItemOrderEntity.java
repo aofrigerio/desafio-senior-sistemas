@@ -22,7 +22,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Table(schema = "sales", name = "item_order")
+@Table(schema = "sales", name = "items_orders")
 public class ItemOrderEntity extends DefaultEntityModel {
 	
 	@ManyToOne

@@ -2,7 +2,7 @@ CREATE SCHEMA IF NOT EXISTS sales;
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-CREATE TABLE IF NOT EXISTS sales.product (
+CREATE TABLE IF NOT EXISTS sales.products (
    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
    created TIMESTAMP NOT NULL,
    updated TIMESTAMP NOT NULL,   
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS sales.product (
    price NUMERIC
 );
 
-CREATE TABLE IF NOT EXISTS sales.order (
+CREATE TABLE IF NOT EXISTS sales.orders (
    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
    created TIMESTAMP NOT NULL,
    updated TIMESTAMP NOT NULL,   
@@ -21,11 +21,19 @@ CREATE TABLE IF NOT EXISTS sales.order (
    total NUMERIC
 );
 
-CREATE TABLE IF NOT EXISTS sales.item_order (
+CREATE TABLE IF NOT EXISTS sales.items_orders (
    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
    created TIMESTAMP NOT NULL,
    updated TIMESTAMP NOT NULL,   
    order_id UUID NOT NULL,
    product_id UUID NOT NULL,
-   quantity NUMERIC
+   quantity NUMERIC,
+   total NUMERIC,
+   CONSTRAINT fk_order
+      FOREIGN KEY(order_id) 
+	  REFERENCES sales.orders(id),
+	CONSTRAINT fk_product
+      FOREIGN KEY(product_id) 
+	  REFERENCES sales.products(id)	  
+	  
 );

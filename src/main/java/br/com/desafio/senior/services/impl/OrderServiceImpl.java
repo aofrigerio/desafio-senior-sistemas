@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.desafio.senior.domain.entities.OrderEntity;
+import br.com.desafio.senior.dtos.DiscountDTO;
 import br.com.desafio.senior.dtos.OrderListDTO;
 import br.com.desafio.senior.dtos.OrderRequestDTO;
 import br.com.desafio.senior.repositories.OrderRepository;
@@ -49,10 +50,10 @@ public class OrderServiceImpl implements OrderService {
 
 	public void update(OrderEntity orderEntity) {
 		Double total = Double.valueOf(0);
+		//TODO -- Refazer
 //		orderEntity.getItems().forEach( items -> {
 //			total.sum(total, items.getTotal());
 //		});
 		repository.save(orderEntity);
 	}
-
 }
