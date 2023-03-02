@@ -8,11 +8,11 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.desafio.senior.DiscountUtil;
+import br.com.desafio.senior.domain.dtos.OrderListDTO;
+import br.com.desafio.senior.domain.dtos.OrderRequestDTO;
 import br.com.desafio.senior.domain.entities.OrderEntity;
-import br.com.desafio.senior.dtos.DiscountDTO;
-import br.com.desafio.senior.dtos.OrderListDTO;
-import br.com.desafio.senior.dtos.OrderRequestDTO;
-import br.com.desafio.senior.repositories.OrderRepository;
+import br.com.desafio.senior.domain.repositories.OrderRepository;
 import br.com.desafio.senior.services.OrderService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
 	private final OrderRepository repository;
 
 	public Page<OrderListDTO> listPageable(Pageable pageable) {
-		List<OrderListDTO> products = repository.findAll(pageable).map(OrderListDTO::new).toList();		
+		List<OrderListDTO> products = repository.findAll(pageable).map(OrderListDTO::new).toList();
 		return new PageImpl<>(products, pageable, products.size());
 	}
 
@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
 		repository.save(order);
 		return order;
 	}
-	
+
 	public OrderEntity getOne(UUID uuId) {
 		return repository.findById(uuId).orElse(null);
 	}
@@ -49,11 +49,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	public void update(OrderEntity orderEntity) {
-		Double total = Double.valueOf(0);
-		//TODO -- Refazer
-//		orderEntity.getItems().forEach( items -> {
-//			total.sum(total, items.getTotal());
-//		});
+		Double total = DiscountUtil.simpleDiscount(orderEntity.getOff(), orderEntity.getItems());
+		orderEntity.setTotal(total);
 		repository.save(orderEntity);
 	}
 }

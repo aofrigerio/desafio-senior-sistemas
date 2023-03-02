@@ -1,4 +1,4 @@
-package br.com.desafio.senior.repositories;
+package br.com.desafio.senior.domain.repositories;
 
 import java.util.UUID;
 

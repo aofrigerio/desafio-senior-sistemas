@@ -6,9 +6,9 @@ import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import br.com.desafio.senior.domain.dtos.ItemOrderListDTO;
+import br.com.desafio.senior.domain.dtos.ItemOrderRequestDTO;
 import br.com.desafio.senior.domain.entities.ItemOrderEntity;
-import br.com.desafio.senior.dtos.ItemOrderListDTO;
-import br.com.desafio.senior.dtos.ItemOrderRequestDTO;
 
 public interface ItemOrderService {	
 	

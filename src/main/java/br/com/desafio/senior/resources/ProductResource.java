@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.desafio.senior.dtos.ProductListDTO;
-import br.com.desafio.senior.dtos.ProductRequestDTO;
+import br.com.desafio.senior.domain.dtos.ProductListDTO;
+import br.com.desafio.senior.domain.dtos.ProductRequestDTO;
 import br.com.desafio.senior.services.ProductService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

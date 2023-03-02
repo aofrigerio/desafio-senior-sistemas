@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 import br.com.desafio.senior.resources.exceptions.OrderNotOpenException;
+import br.com.desafio.senior.resources.exceptions.ResourceNotFoundedException;
 
 @RestControllerAdvice
 public class ResourceExceptionHandler {
@@ -17,7 +18,14 @@ public class ResourceExceptionHandler {
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
 	public ErrorMessage resourceNotFoundException(OrderNotOpenException ex, WebRequest request) {
 		return buildErrorMessage(HttpStatus.BAD_REQUEST.value(), "Orderm já fechada",
-				"Escolha outra orderm para aplicar o desconto");
+				"Escolha outra order para aplicar o desconto");
+	}
+	
+	@ExceptionHandler(value = { ResourceNotFoundedException.class })
+	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	public ErrorMessage resourceNotFoundException(ResourceNotFoundedException ex, WebRequest request) {
+		return buildErrorMessage(HttpStatus.NOT_FOUND.value(), "Recurso não encontrado",
+				"O recurso solicitado não foi encontrado. Por favor, escolha outro");
 	}
 
 	private ErrorMessage buildErrorMessage(int code, String message, String description) {

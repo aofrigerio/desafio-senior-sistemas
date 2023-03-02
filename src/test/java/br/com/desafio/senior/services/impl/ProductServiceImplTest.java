@@ -19,9 +19,9 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import br.com.desafio.senior.domain.dtos.ProductRequestDTO;
 import br.com.desafio.senior.domain.entities.ProductEntity;
-import br.com.desafio.senior.dtos.ProductRequestDTO;
-import br.com.desafio.senior.repositories.ProductRepository;
+import br.com.desafio.senior.domain.repositories.ProductRepository;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceImplTest {

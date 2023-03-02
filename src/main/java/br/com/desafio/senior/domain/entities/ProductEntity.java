@@ -2,9 +2,9 @@ package br.com.desafio.senior.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import br.com.desafio.senior.dtos.ProductListDTO;
-import br.com.desafio.senior.dtos.ProductRequestDTO;
-import br.com.desafio.senior.enuns.ProductTypeEnum;
+import br.com.desafio.senior.domain.dtos.ProductListDTO;
+import br.com.desafio.senior.domain.dtos.ProductRequestDTO;
+import br.com.desafio.senior.domain.enuns.ProductTypeEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

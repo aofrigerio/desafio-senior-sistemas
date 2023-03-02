@@ -8,12 +8,12 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.desafio.senior.domain.dtos.ItemOrderListDTO;
+import br.com.desafio.senior.domain.dtos.ItemOrderRequestDTO;
 import br.com.desafio.senior.domain.entities.ItemOrderEntity;
 import br.com.desafio.senior.domain.entities.OrderEntity;
 import br.com.desafio.senior.domain.entities.ProductEntity;
-import br.com.desafio.senior.dtos.ItemOrderListDTO;
-import br.com.desafio.senior.dtos.ItemOrderRequestDTO;
-import br.com.desafio.senior.repositories.ItemOrderRepository;
+import br.com.desafio.senior.domain.repositories.ItemOrderRepository;
 import br.com.desafio.senior.services.ItemOrderService;
 import br.com.desafio.senior.services.OrderService;
 import br.com.desafio.senior.services.ProductService;
@@ -69,9 +69,8 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 	}
 
 	public List<ItemOrderEntity> listByOrder(UUID uuIdOrder) {
-//		return itemOrderRepository.findAllByOrderId();
-		//QueryDSL TODO
-		return null;
+//		return itemOrderRepository.findAllByOrderId(uuIdOrder);
+		return itemOrderRepository.findAllItemOrdensByOrderId(uuIdOrder);
 	}
 
 }

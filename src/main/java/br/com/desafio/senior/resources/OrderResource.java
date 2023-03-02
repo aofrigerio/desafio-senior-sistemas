@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.desafio.senior.dtos.DiscountDTO;
-import br.com.desafio.senior.dtos.OrderListDTO;
-import br.com.desafio.senior.dtos.OrderRequestDTO;
+import br.com.desafio.senior.domain.dtos.DiscountDTO;
+import br.com.desafio.senior.domain.dtos.OrderClose;
+import br.com.desafio.senior.domain.dtos.OrderListDTO;
+import br.com.desafio.senior.domain.dtos.OrderRequestDTO;
+import br.com.desafio.senior.services.DiscountOrderService;
 import br.com.desafio.senior.services.OrderService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -30,6 +32,7 @@ import lombok.AllArgsConstructor;
 public class OrderResource {
 	
 	private final OrderService orderService;
+	private final DiscountOrderService discountOrderService;
 	
 	@GetMapping
 	private ResponseEntity<Page<OrderListDTO>> pageable(Pageable pageable){
@@ -57,6 +60,18 @@ public class OrderResource {
 	@DeleteMapping("/{uuId}")
 	private ResponseEntity<Void> delete(@PathVariable UUID uuId){
 		orderService.delete(uuId);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@PostMapping("/discount")
+	private ResponseEntity<Void> discount(@RequestBody DiscountDTO discount) {
+		discountOrderService.discountOrder(discount);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@PostMapping("/invoice")
+	private ResponseEntity<Void> invoice(@RequestBody OrderClose orderCloseDTO) {
+		discountOrderService.orderClose(orderCloseDTO);
 		return ResponseEntity.noContent().build();
 	}
 }

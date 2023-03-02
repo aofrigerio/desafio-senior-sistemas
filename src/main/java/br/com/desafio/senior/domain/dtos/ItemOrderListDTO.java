@@ -1,4 +1,4 @@
-package br.com.desafio.senior.dtos;
+package br.com.desafio.senior.domain.dtos;
 
 import java.util.UUID;
 

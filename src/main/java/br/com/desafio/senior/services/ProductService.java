@@ -7,9 +7,9 @@ import org.springframework.data.domain.Pageable;
 
 import com.querydsl.core.types.Predicate;
 
+import br.com.desafio.senior.domain.dtos.ProductListDTO;
+import br.com.desafio.senior.domain.dtos.ProductRequestDTO;
 import br.com.desafio.senior.domain.entities.ProductEntity;
-import br.com.desafio.senior.dtos.ProductListDTO;
-import br.com.desafio.senior.dtos.ProductRequestDTO;
 
 public interface ProductService {
 	

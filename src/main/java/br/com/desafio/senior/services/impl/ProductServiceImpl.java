@@ -8,10 +8,11 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.desafio.senior.domain.dtos.ProductListDTO;
+import br.com.desafio.senior.domain.dtos.ProductRequestDTO;
 import br.com.desafio.senior.domain.entities.ProductEntity;
-import br.com.desafio.senior.dtos.ProductListDTO;
-import br.com.desafio.senior.dtos.ProductRequestDTO;
-import br.com.desafio.senior.repositories.ProductRepository;
+import br.com.desafio.senior.domain.repositories.ProductRepository;
+import br.com.desafio.senior.resources.exceptions.ResourceNotFoundedException;
 import br.com.desafio.senior.services.ProductService;
 import lombok.AllArgsConstructor;
 
@@ -33,12 +34,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public ProductEntity getOne(UUID uuId) {
-		var product = productRepository.findById(uuId).orElse(null); //TODO -- ajustar os optionals
+		var product = productRepository.findById(uuId).orElseThrow(ResourceNotFoundedException::new);
 		return product;
 	}
 
 	public ProductListDTO update(UUID uuId, ProductRequestDTO productRequestDTO) {
-		var product = productRepository.findById(uuId).orElse(null);
+		var product = productRepository.findById(uuId).orElseThrow(ResourceNotFoundedException::new);
 		product.setName(productRequestDTO.name());
 		product.setPrice(productRequestDTO.price());
 		return new ProductListDTO(product);

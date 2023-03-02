@@ -5,14 +5,14 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import br.com.desafio.senior.dtos.OrderRequestDTO;
-import br.com.desafio.senior.enuns.OrderStatusEnum;
+import br.com.desafio.senior.domain.dtos.OrderRequestDTO;
+import br.com.desafio.senior.domain.enuns.OrderStatusEnum;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
@@ -37,9 +37,9 @@ public class OrderEntity extends DefaultEntityModel {
 	@Column(name = "customer", length = 50)
 	private String customer;
 
-//	@JsonIgnore
-//	@OneToMany(fetch = FetchType.LAZY)
-//	private List<ItemOrderEntity> items;
+	@JsonIgnore
+	@OneToMany(mappedBy="order", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	private List<ItemOrderEntity> items;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status", length = 10, nullable = false)
