@@ -8,12 +8,12 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.desafio.senior.DiscountUtil;
 import br.com.desafio.senior.domain.dtos.OrderListDTO;
 import br.com.desafio.senior.domain.dtos.OrderRequestDTO;
 import br.com.desafio.senior.domain.entities.OrderEntity;
 import br.com.desafio.senior.domain.repositories.OrderRepository;
 import br.com.desafio.senior.services.OrderService;
+import br.com.desafio.senior.util.DiscountUtil;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 

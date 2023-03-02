@@ -12,10 +12,44 @@ import br.com.desafio.senior.domain.dtos.ProductRequestDTO;
 import br.com.desafio.senior.domain.entities.ProductEntity;
 
 public interface ProductService {
-	
+
+	/**
+	 * Listar registro paginado
+	 * 
+	 * @param pageable
+	 * @return
+	 */
 	Page<ProductListDTO> listPageable(Pageable pageable);
+
+	/**
+	 * Criar um registro
+	 * 
+	 * @param productRequestDTO
+	 * @return
+	 */
 	ProductListDTO create(ProductRequestDTO productRequestDTO);
+
+	/**
+	 * Buscar um unico registro
+	 * 
+	 * @param uuId
+	 * @return
+	 */
 	ProductEntity getOne(UUID uuId);
+
+	/**
+	 * Atualizar um registro
+	 * 
+	 * @param uuId
+	 * @param productRequestDTO
+	 * @return
+	 */
 	ProductListDTO update(UUID uuId, ProductRequestDTO productRequestDTO);
+
+	/**
+	 * Deletar um registro
+	 * 
+	 * @param uuId
+	 */
 	void delete(UUID uuId);
 }

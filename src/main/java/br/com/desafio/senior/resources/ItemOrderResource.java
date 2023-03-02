@@ -18,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.desafio.senior.domain.dtos.ItemOrderListDTO;
 import br.com.desafio.senior.domain.dtos.ItemOrderRequestDTO;
 import br.com.desafio.senior.services.ItemOrderService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -31,16 +32,19 @@ public class ItemOrderResource {
 	private final ItemOrderService itemOrderService;
 	
 	@GetMapping
+	@Operation(summary = "Listar todos paginado")
 	private ResponseEntity<Page<ItemOrderListDTO>> pageable(Pageable pageable){
 		return ResponseEntity.ok(itemOrderService.listPageable(pageable));
 	}
 	
 	@GetMapping("/{uuId}")
+	@Operation(summary = "Buscar um recurso por UUID")
 	private ResponseEntity<ItemOrderListDTO> read(@PathVariable UUID uuId){
 		return ResponseEntity.ok(new ItemOrderListDTO(itemOrderService.getOne(uuId)));
 	}
 	
 	@PostMapping
+	@Operation(summary = "Criar um recurso")
 	private ResponseEntity<ItemOrderListDTO> create(@Valid @RequestBody ItemOrderRequestDTO itemOrderRequestDTO, UriComponentsBuilder uriBuilder){		
 		var createItemOrder = itemOrderService.create(itemOrderRequestDTO);		
 		var uri = uriBuilder.path("/order/{id}").buildAndExpand(createItemOrder.id()).toUri();
@@ -48,11 +52,13 @@ public class ItemOrderResource {
 	}
 	
 	@PutMapping("/{uuId}")
+	@Operation(summary = "Editar um recurso")
 	private ResponseEntity<ItemOrderListDTO> update(@PathVariable UUID uuId, @Valid @RequestBody ItemOrderRequestDTO itemOrderRequestDTO){
 		return ResponseEntity.noContent().build();
 	} 
 	
 	@DeleteMapping("/{uuId}")
+	@Operation(summary = "Deletar um recurso")
 	private ResponseEntity<?> delete(@PathVariable UUID uuId){
 		return ResponseEntity.noContent().build();
 	} 

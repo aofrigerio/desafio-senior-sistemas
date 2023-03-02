@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import br.com.desafio.senior.DiscountUtil;
 import br.com.desafio.senior.domain.dtos.DiscountDTO;
 import br.com.desafio.senior.domain.dtos.OrderClose;
 import br.com.desafio.senior.domain.entities.ItemOrderEntity;
@@ -14,6 +13,7 @@ import br.com.desafio.senior.resources.exceptions.OrderNotOpenException;
 import br.com.desafio.senior.services.DiscountOrderService;
 import br.com.desafio.senior.services.ItemOrderService;
 import br.com.desafio.senior.services.OrderService;
+import br.com.desafio.senior.util.DiscountUtil;
 import lombok.AllArgsConstructor;
 
 @Service

@@ -69,8 +69,7 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 	}
 
 	public List<ItemOrderEntity> listByOrder(UUID uuIdOrder) {
-//		return itemOrderRepository.findAllByOrderId(uuIdOrder);
-		return itemOrderRepository.findAllItemOrdensByOrderId(uuIdOrder);
+		return itemOrderRepository.findAllByOrderId(uuIdOrder);
 	}
 
 }

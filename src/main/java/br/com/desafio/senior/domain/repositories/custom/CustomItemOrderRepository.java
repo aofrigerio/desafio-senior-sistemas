@@ -8,5 +8,4 @@ import br.com.desafio.senior.domain.entities.ItemOrderEntity;
 public interface CustomItemOrderRepository {
 	
 	List<ItemOrderEntity> findAllByOrderId(UUID uuId);
-
 }
