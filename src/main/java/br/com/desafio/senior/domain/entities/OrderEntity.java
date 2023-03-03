@@ -54,6 +54,8 @@ public class OrderEntity extends DefaultEntityModel {
 	@PrePersist
 	protected void onCreateOrder() {
 		status = OrderStatusEnum.OPEN;
+		off = Double.valueOf(0);
+		total = Double.valueOf(0);
 	}
 	
 	public OrderEntity(OrderRequestDTO orderRequestDTO) {

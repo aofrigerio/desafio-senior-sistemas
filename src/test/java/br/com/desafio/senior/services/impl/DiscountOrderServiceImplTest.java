@@ -14,7 +14,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.com.desafio.senior.domain.dtos.DiscountDTO;
 import br.com.desafio.senior.domain.dtos.OrderClose;
-import br.com.desafio.senior.domain.entities.ItemOrderEntity;
 import br.com.desafio.senior.domain.entities.OrderEntity;
 import br.com.desafio.senior.domain.enuns.OrderStatusEnum;
 import br.com.desafio.senior.resources.exceptions.OrderNotOpenException;

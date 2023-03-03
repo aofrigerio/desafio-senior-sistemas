@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import br.com.desafio.senior.domain.dtos.DiscountDTO;
-import br.com.desafio.senior.domain.dtos.OrderClose;
 import br.com.desafio.senior.domain.entities.ItemOrderEntity;
 import br.com.desafio.senior.domain.entities.OrderEntity;
 import br.com.desafio.senior.domain.enuns.OrderStatusEnum;

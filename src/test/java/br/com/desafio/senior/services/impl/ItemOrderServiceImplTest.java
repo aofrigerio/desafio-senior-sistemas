@@ -21,12 +21,10 @@ import com.querydsl.core.types.Predicate;
 
 import br.com.desafio.senior.domain.dtos.ItemOrderRequestDTO;
 import br.com.desafio.senior.domain.entities.ItemOrderEntity;
-import br.com.desafio.senior.domain.entities.OrderEntity;
 import br.com.desafio.senior.domain.entities.ProductEntity;
 import br.com.desafio.senior.domain.enuns.ProductTypeEnum;
 import br.com.desafio.senior.domain.repositories.ItemOrderRepository;
 import br.com.desafio.senior.domain.repositories.OrderRepository;
-import br.com.desafio.senior.domain.repositories.ProductRepository;
 import br.com.desafio.senior.resources.exceptions.ResourceNotFoundedException;
 import br.com.desafio.senior.services.OrderService;
 import br.com.desafio.senior.services.ProductService;

@@ -21,7 +21,6 @@ import com.querydsl.core.types.Predicate;
 import br.com.desafio.senior.domain.dtos.ItemOrderListDTO;
 import br.com.desafio.senior.domain.dtos.ItemOrderRequestDTO;
 import br.com.desafio.senior.domain.entities.ItemOrderEntity;
-import br.com.desafio.senior.domain.entities.ProductEntity;
 import br.com.desafio.senior.services.ItemOrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

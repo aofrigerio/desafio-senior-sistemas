@@ -22,7 +22,7 @@ de produtos/serviços e de pedidos abertos/fechados.</p>
 
 <h2>A Base da API está na porta 8080</h2>
 
-http://localhost:8090/
+http://localhost:8080/
 
 <h2>Swagger - Documentação</h2>
 
@@ -31,11 +31,25 @@ http://localhost:8090/
 
 <h2>Rodando o Projeto</h2>
 
-<p>O projeto está configurando com o tomcat embarcado. Não precisa necessidade de ter tomcat instalado. Somente o Java.</p>
-<p>Na raiz do projeto, execute o comando ./mnvw clean package install. Isso irá gerar um build do projeto na pasta target</p>
-<p>Depois, para iniciar o projeto, dentro da pasta target, utilize o comando: "java -jar senior-0.0.1-SNAPSHOT.jar"
+<p>O projeto está configurando com o tomcat embarcado.</p>
+<p>Na raiz do projeto, execute o comando ./mvnw spring-boot:run. Isso irá gerar um build do projeto na pasta target e também iniciará o serviço</p>
 
 <h4> Docker Compose </h4>
 <p>Com o docker instalado na máquina, execute o comando dentro da pasta do projeto:<p>
+<p> docker-compose up -d</p>
 <p>utilize o docker-compose.yaml após gerar o pacote java. O apontamento do JAR está no ./target</p>
 
+<p>No docker-compose há as web applications configuradas:</p>
+
+<ul>http://localhost:8080 = Base API</ul>
+<ul>http://localhost:5432 = Banco de dados Postegres</ul>
+<ul>http://localhost:8080/swagger-ui/index.html = Swagger-UI</ul>
+<ul>http://localhost:9998 = Adminer (Gerenciador de banco de dados web)</ul>
+
+<h3> Variáveis do projeto</p></h3>
+
+<ul>DB_HOST: Ip do banco de dados</ul>
+<ul>DB_PORT: Porta do banco de dados</ul>
+<ul>DB_NAME: Nome do banco de dados</ul>
+<ul>DB_USER: Usuário do bancod e dados</ul>
+<ul>DB_PASSWORD: password do banco de dados</ul>
