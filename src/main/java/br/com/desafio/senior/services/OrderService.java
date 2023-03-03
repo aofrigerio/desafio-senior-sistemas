@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.querydsl.core.types.Predicate;
 
+import br.com.desafio.senior.domain.dtos.OrderClose;
 import br.com.desafio.senior.domain.dtos.OrderListDTO;
 import br.com.desafio.senior.domain.dtos.OrderRequestDTO;
 import br.com.desafio.senior.domain.entities.OrderEntity;
@@ -57,4 +58,9 @@ public interface OrderService {
 	 * @param uuId
 	 */
 	void delete(UUID uuId);
+	
+	/** Fechar Pedido
+	 * @param orderCloseDTO
+	 */
+	void orderClose(OrderClose orderCloseDTO);
 }

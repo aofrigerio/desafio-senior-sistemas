@@ -42,17 +42,5 @@ public class DiscountOrderServiceImpl implements DiscountOrderService {
 		orderEntity.setOff(discountOrderService.discount());
 		orderEntity.setTotal(totalProducts);
 		orderService.update(orderEntity);
-
 	}
-
-	@Override
-	public void orderClose(OrderClose orderCloseDTO) {
-		OrderEntity orderEntity = orderService.getOne(orderCloseDTO.orderId());
-		if(orderEntity.getStatus().equals(OrderStatusEnum.CLOSED)){
-			throw new OrderNotOpenException();
-		}
-		orderEntity.setStatus(OrderStatusEnum.CLOSED);
-		orderService.update(orderEntity);
-	}
-
 }

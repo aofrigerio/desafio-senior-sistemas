@@ -10,10 +10,14 @@ import org.springframework.stereotype.Service;
 
 import com.querydsl.core.types.Predicate;
 
+import br.com.desafio.senior.domain.dtos.OrderClose;
 import br.com.desafio.senior.domain.dtos.OrderListDTO;
 import br.com.desafio.senior.domain.dtos.OrderRequestDTO;
 import br.com.desafio.senior.domain.entities.OrderEntity;
+import br.com.desafio.senior.domain.enuns.OrderStatusEnum;
 import br.com.desafio.senior.domain.repositories.OrderRepository;
+import br.com.desafio.senior.resources.exceptions.OrderNotOpenException;
+import br.com.desafio.senior.resources.exceptions.ResourceNotFoundedException;
 import br.com.desafio.senior.services.OrderService;
 import br.com.desafio.senior.util.DiscountUtil;
 import jakarta.transaction.Transactional;
@@ -38,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	public OrderEntity getOne(UUID uuId) {
-		return repository.findById(uuId).orElse(null);
+		return repository.findById(uuId).orElseThrow(ResourceNotFoundedException::new);
 	}
 
 	public OrderEntity update(UUID uuId, OrderRequestDTO orderRequestDTO) {
@@ -54,5 +58,14 @@ public class OrderServiceImpl implements OrderService {
 		Double total = DiscountUtil.simpleDiscount(orderEntity.getOff(), orderEntity.getItems());
 		orderEntity.setTotal(total);
 		repository.save(orderEntity);
+	}
+	
+	public void orderClose(OrderClose orderCloseDTO) {
+		OrderEntity orderEntity = this.getOne(orderCloseDTO.orderId());
+		if(orderEntity.getStatus().equals(OrderStatusEnum.CLOSED)){
+			throw new OrderNotOpenException();
+		}
+		orderEntity.setStatus(OrderStatusEnum.CLOSED);
+		this.update(orderEntity);
 	}
 }

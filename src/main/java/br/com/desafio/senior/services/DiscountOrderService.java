@@ -10,11 +10,4 @@ public interface DiscountOrderService {
 	 * @param discountOrderService DiscountDTO
 	 */
 	void discountOrder(DiscountDTO discountOrderService);
-
-	/**
-	 * Finalizar o Pedido
-	 * 
-	 * @param orderCloseDTO PedidoDTO
-	 */
-	void orderClose(OrderClose orderCloseDTO);
 }

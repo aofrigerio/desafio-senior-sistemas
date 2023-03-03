@@ -21,6 +21,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.querydsl.core.types.Predicate;
 
+import br.com.desafio.senior.domain.dtos.ProductListDTO;
 import br.com.desafio.senior.domain.dtos.ProductRequestDTO;
 import br.com.desafio.senior.domain.entities.ProductEntity;
 import br.com.desafio.senior.domain.repositories.ProductRepository;
@@ -54,8 +55,8 @@ public class ProductServiceImplTest {
 
 	@Test
 	void listPageable() {
-		Pageable pageable = PageRequest.of(0, 8);
-		when(productRepository.findAll(pageable)).thenReturn(new PageImpl<>(List.of(buildProductEntity())));
+		Pageable pageable = PageRequest.of(1, 8);
+		when(productRepository.findAll(predicate, pageable)).thenReturn(new PageImpl<>(List.of(buildProductEntity())));
 		assertDoesNotThrow(() -> productServiceImpl.listPageable(predicate, pageable));
 	}
 
@@ -72,7 +73,7 @@ public class ProductServiceImplTest {
 
 	@Test
 	void updateWithNull() {
-		assertThrows(NullPointerException.class, () -> productServiceImpl
+		assertThrows(ResourceNotFoundedException.class, () -> productServiceImpl
 				.update(UUID.fromString("e639dab4-2fa3-43f4-9c69-7444af5130e4"), buildProductRequestDTO()));
 	}
 

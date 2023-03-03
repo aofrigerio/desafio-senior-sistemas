@@ -16,6 +16,7 @@ import br.com.desafio.senior.domain.entities.ItemOrderEntity;
 import br.com.desafio.senior.domain.entities.OrderEntity;
 import br.com.desafio.senior.domain.entities.ProductEntity;
 import br.com.desafio.senior.domain.repositories.ItemOrderRepository;
+import br.com.desafio.senior.resources.exceptions.ResourceNotFoundedException;
 import br.com.desafio.senior.services.ItemOrderService;
 import br.com.desafio.senior.services.OrderService;
 import br.com.desafio.senior.services.ProductService;
@@ -55,11 +56,11 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 	}
 
 	public ItemOrderEntity getOne(UUID uuId) {
-		return itemOrderRepository.findById(uuId).orElse(null);
+		return itemOrderRepository.findById(uuId).orElseThrow(ResourceNotFoundedException::new);
 	}
 
 	public ItemOrderEntity update(UUID uuId, ItemOrderRequestDTO orderRequestDTO) {
-		var itemOrder = itemOrderRepository.findById(uuId).orElse(null);
+		var itemOrder = itemOrderRepository.findById(uuId).orElseThrow(ResourceNotFoundedException::new);
 		itemOrder.setQuantity(orderRequestDTO.quantity());
 		itemOrder.setTotal(orderRequestDTO.quantity() * itemOrder.getProduct().getPrice());
 		orderService.update(itemOrder.getOrder());

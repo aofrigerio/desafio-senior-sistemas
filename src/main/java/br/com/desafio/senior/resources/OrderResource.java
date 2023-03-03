@@ -84,7 +84,7 @@ public class OrderResource {
 	@PostMapping("/invoice")
 	@Operation(summary = "Finalizar o Pedido")
 	private ResponseEntity<Void> invoice(@RequestBody OrderClose orderCloseDTO) {
-		discountOrderService.orderClose(orderCloseDTO);
+		orderService.orderClose(orderCloseDTO);
 		return ResponseEntity.noContent().build();
 	}
 }
