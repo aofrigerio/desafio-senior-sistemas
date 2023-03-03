@@ -5,6 +5,8 @@ import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.querydsl.core.types.Predicate;
+
 import br.com.desafio.senior.domain.dtos.OrderListDTO;
 import br.com.desafio.senior.domain.dtos.OrderRequestDTO;
 import br.com.desafio.senior.domain.entities.OrderEntity;
@@ -17,7 +19,7 @@ public interface OrderService {
 	 * @param pageable
 	 * @return
 	 */
-	Page<OrderListDTO> listPageable(Pageable pageable);
+	Page<OrderListDTO> listPageable(Predicate predicate, Pageable pageable);
 
 	/**
 	 * @param orderRequestDTO

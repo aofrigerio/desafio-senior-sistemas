@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.querydsl.core.types.Predicate;
+
 import br.com.desafio.senior.domain.dtos.ItemOrderListDTO;
 import br.com.desafio.senior.domain.dtos.ItemOrderRequestDTO;
 import br.com.desafio.senior.domain.entities.ItemOrderEntity;
@@ -32,8 +34,8 @@ public class ItemOrderServiceImpl implements ItemOrderService {
 		this.productService = productService;
 	}
 
-	public Page<ItemOrderListDTO> listPageable(Pageable pageable) {
-		List<ItemOrderListDTO> itemOrder = itemOrderRepository.findAll(pageable).map(ItemOrderListDTO::new).toList();
+	public Page<ItemOrderListDTO> listPageable(Predicate predicate, Pageable pageable) {
+		List<ItemOrderListDTO> itemOrder = itemOrderRepository.findAll(predicate, pageable).map(ItemOrderListDTO::new).toList();
 		return new PageImpl<>(itemOrder, pageable, itemOrder.size());
 	}
 

@@ -16,6 +16,7 @@ de produtos/serviços e de pedidos abertos/fechados.</p>
 <ul>Flyway</ul>
 <ul>Maven</ul>
 <ul>JPA + Hibernate</ul>
+<ul>QueryDSL</ul>
 <ul>Postegres</ul>
 <ul>Swagger OpenAPI v2</ul>
 

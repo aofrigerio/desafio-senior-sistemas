@@ -19,7 +19,7 @@ public interface ProductService {
 	 * @param pageable
 	 * @return
 	 */
-	Page<ProductListDTO> listPageable(Pageable pageable);
+	Page<ProductListDTO> listPageable(Predicate predicate, Pageable pageable);
 
 	/**
 	 * Criar um registro

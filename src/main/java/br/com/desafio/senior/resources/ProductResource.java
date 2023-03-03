@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.querydsl.core.types.Predicate;
+
 import br.com.desafio.senior.domain.dtos.ProductListDTO;
 import br.com.desafio.senior.domain.dtos.ProductRequestDTO;
+import br.com.desafio.senior.domain.entities.ProductEntity;
 import br.com.desafio.senior.services.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -32,8 +36,11 @@ public class ProductResource {
 
 	@GetMapping
 	@Operation(summary = "Listar todos paginado")
-	private ResponseEntity<Page<ProductListDTO>> pageable(Pageable pageable) {
-		return ResponseEntity.ok(productService.listPageable(pageable));
+	private ResponseEntity<Page<ProductListDTO>> pageable(
+			@QuerydslPredicate(root = ProductEntity.class) Predicate predicate,
+			Pageable pageable
+			) {
+		return ResponseEntity.ok(productService.listPageable(predicate, pageable));
 	}
 
 	@GetMapping("/{uuId}")

@@ -6,6 +6,8 @@ import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.querydsl.core.types.Predicate;
+
 import br.com.desafio.senior.domain.dtos.ItemOrderListDTO;
 import br.com.desafio.senior.domain.dtos.ItemOrderRequestDTO;
 import br.com.desafio.senior.domain.entities.ItemOrderEntity;
@@ -17,7 +19,7 @@ public interface ItemOrderService {
 	 * @param pageable
 	 * @return
 	 */
-	Page<ItemOrderListDTO> listPageable(Pageable pageable);
+	Page<ItemOrderListDTO> listPageable(Predicate predicate, Pageable pageable);
 
 	/**
 	 * Listar item do pedido por UUID de pedido

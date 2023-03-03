@@ -19,9 +19,12 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import com.querydsl.core.types.Predicate;
+
 import br.com.desafio.senior.domain.dtos.ProductRequestDTO;
 import br.com.desafio.senior.domain.entities.ProductEntity;
 import br.com.desafio.senior.domain.repositories.ProductRepository;
+import br.com.desafio.senior.resources.exceptions.ResourceNotFoundedException;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceImplTest {
@@ -30,6 +33,9 @@ public class ProductServiceImplTest {
 
 	@Mock
 	ProductRepository productRepository;
+	
+	@Mock
+	Predicate predicate;
 
 	@BeforeEach
 	void setUp() {
@@ -50,7 +56,7 @@ public class ProductServiceImplTest {
 	void listPageable() {
 		Pageable pageable = PageRequest.of(0, 8);
 		when(productRepository.findAll(pageable)).thenReturn(new PageImpl<>(List.of(buildProductEntity())));
-		assertDoesNotThrow(() -> productServiceImpl.listPageable(pageable));
+		assertDoesNotThrow(() -> productServiceImpl.listPageable(predicate, pageable));
 	}
 
 	@Test
@@ -61,7 +67,7 @@ public class ProductServiceImplTest {
 
 	@Test
 	void getOneWithoutValue() {
-		assertDoesNotThrow(() -> productServiceImpl.getOne(UUID.fromString("e639dab4-2fa3-43f4-9c69-7444af5130e4")));
+		assertThrows(ResourceNotFoundedException.class, () -> productServiceImpl.getOne(UUID.fromString("e639dab4-2fa3-43f4-9c69-7444af5130e4")));
 	}
 
 	@Test

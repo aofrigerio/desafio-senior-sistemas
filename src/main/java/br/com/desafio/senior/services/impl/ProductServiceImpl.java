@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.querydsl.core.types.Predicate;
+
 import br.com.desafio.senior.domain.dtos.ProductListDTO;
 import br.com.desafio.senior.domain.dtos.ProductRequestDTO;
 import br.com.desafio.senior.domain.entities.ProductEntity;
@@ -28,8 +30,8 @@ public class ProductServiceImpl implements ProductService {
 		return new ProductListDTO(product);
 	}
 
-	public Page<ProductListDTO> listPageable(Pageable pageable) {
-		List<ProductListDTO> products = productRepository.findAll(pageable).map(ProductListDTO::new).toList();
+	public Page<ProductListDTO> listPageable(Predicate predicate, Pageable pageable) {
+		List<ProductListDTO> products = productRepository.findAll(predicate, pageable).map(ProductListDTO::new).toList();
 		return new PageImpl<>(products, pageable, products.size());
 	}
 

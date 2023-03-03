@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.querydsl.core.types.Predicate;
+
 import br.com.desafio.senior.domain.dtos.OrderListDTO;
 import br.com.desafio.senior.domain.dtos.OrderRequestDTO;
 import br.com.desafio.senior.domain.entities.OrderEntity;
@@ -23,8 +25,8 @@ public class OrderServiceImpl implements OrderService {
 
 	private final OrderRepository repository;
 
-	public Page<OrderListDTO> listPageable(Pageable pageable) {
-		List<OrderListDTO> products = repository.findAll(pageable).map(OrderListDTO::new).toList();
+	public Page<OrderListDTO> listPageable(Predicate predicate, Pageable pageable) {
+		List<OrderListDTO> products = repository.findAll(predicate, pageable).map(OrderListDTO::new).toList();
 		return new PageImpl<>(products, pageable, products.size());
 	}
 

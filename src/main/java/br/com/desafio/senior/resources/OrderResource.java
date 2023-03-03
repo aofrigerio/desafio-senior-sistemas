@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.querydsl.core.types.Predicate;
+
 import br.com.desafio.senior.domain.dtos.DiscountDTO;
 import br.com.desafio.senior.domain.dtos.OrderClose;
 import br.com.desafio.senior.domain.dtos.OrderListDTO;
 import br.com.desafio.senior.domain.dtos.OrderRequestDTO;
+import br.com.desafio.senior.domain.entities.OrderEntity;
 import br.com.desafio.senior.services.DiscountOrderService;
 import br.com.desafio.senior.services.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,8 +41,9 @@ public class OrderResource {
 	
 	@GetMapping
 	@Operation(summary = "Listar todos paginado")
-	private ResponseEntity<Page<OrderListDTO>> pageable(Pageable pageable){
-		return ResponseEntity.ok(orderService.listPageable(pageable));
+	private ResponseEntity<Page<OrderListDTO>> pageable(@QuerydslPredicate(root = OrderEntity.class) Predicate predicate,
+			Pageable pageable){
+		return ResponseEntity.ok(orderService.listPageable(predicate, pageable));
 	}
 
 	
